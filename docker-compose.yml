@@ -1,0 +1,25 @@
+version: "2"
+services:
+  apigateway:
+    container_name: apigateway
+    image: kamaal0/api_gateway:0.9
+    restart: always
+    ports:
+      - "5003:5003"
+    depends_on:
+      - car
+  car:
+    container_name: car
+    restart: always
+    image: kamaal0/grpc_cars:0.8
+    ports:
+      - "50051:50051"
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"

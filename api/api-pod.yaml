@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api
+  labels:
+    tag: api-pod
+spec:  # specification of the pod's contents
+  restartPolicy: Never
+  hostNetwork: true
+  containers:
+    - name: apigateway-v1
+      build: ./Dockerfile
+      image: api-pod
+      ports:
+        - containerPort: 5003
+          hostPort: 5003

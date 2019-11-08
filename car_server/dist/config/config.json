@@ -1,0 +1,5 @@
+{
+  "DB_HOST": "mongodb://mongo:27017/cars",
+  "SERVER_NAME": "0.0.0.0:50051",
+  "path": "/dist/"
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package cars;
+
+message Car {
+    string model = 1;
+	string make = 2;
+	int32 year = 3;
+	int32 doors = 4;
+	string createdAt = 5;
+	int64 totalRun = 6;
+	int64 currentRun = 7;
+    string fuel = 8;
+    string _id = 9;
+}
+
+message CarByID {
+    string id = 1;
+}
+
+message CarList {
+    repeated Car cars = 1;
+}
+
+message Error {
+    string type = 1;
+    string message = 2;
+    string additional = 3;
+}
+
+message Success{
+    string type = 1;
+    string message = 2;
+    string additional = 3;
+    Car car = 4;
+}
+
+message Empty {}
+
+service CarsService {
+    rpc List (Empty) returns (CarList);
+    rpc Insert (Car) returns (Success);
+    rpc Update (Car) returns (Success);
+    rpc Get (CarByID) returns (Car);
+    rpc Remove (CarByID) returns (Success);
+}

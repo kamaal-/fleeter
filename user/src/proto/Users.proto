@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package users;
+
+message User {
+    string username = 1;
+	string password = 2;
+	string firstName = 3;
+	string lastName = 4;
+	string createdAt = 5;
+	string organizationName = 6;
+	string role = 7;
+    string _id = 9;
+}
+
+message UserByID {
+    string id = 1;
+}
+
+message UserList {
+    repeated User users = 1;
+}
+
+message Error {
+    string type = 1;
+    string message = 2;
+    string additional = 3;
+}
+
+message Success{
+    string type = 1;
+    string message = 2;
+    string additional = 3;
+    User user = 4;
+}
+
+message Empty {}
+
+service UsersService {
+    rpc List (Empty) returns (UserList);
+    rpc Insert (User) returns (Success);
+    rpc Update (User) returns (Success);
+    rpc Get (UserByID) returns (User);
+    rpc Remove (UserByID) returns (Success);
+}
